@@ -6,7 +6,7 @@ from datetime import datetime
 
 # Assuming you have a MongoDB connection and a collection object
 # Set up the MongoDB connection and collection
-client = pymongo.MongoClient("mongodb+srv://21311a6611:Waffle@cluster0.ub5pbd6.mongodb.net/")
+client = pymongo.MongoClient("mongodb+srv://<username>:<pass>@cluster0.ub5pbd6.mongodb.net/")
 db = client["Tech_Tales"]
 collection = db["comments"]
 
