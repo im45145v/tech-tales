@@ -3,13 +3,11 @@ import requests
 import pymongo
 from twilio.rest import Client as cl
 
-account_sid = ''
-auth_token = ''
-twilio_phone_number = ''
-client1=cl(account_sid, auth_token)
-# Assuming you have a MongoDB connection and a collection object
-# Set up the MongoDB connection and collection
-client = pymongo.MongoClient("mongodb+srv://<>:<>@cluster0.ub5pbd6.mongodb.net/")
+account_sid = st.secrets["account_sid"]
+auth_token = st.secrets["auth_token"]
+twilio_phone_number = st.secrets["twilio_phone_number"]
+client1 = cl(account_sid, auth_token)
+client = pymongo.MongoClient(st.secrets["mclient"])
 db = client["Tech_Tales"]
 collection = db["comments"]
 
