@@ -27,8 +27,6 @@ def main():
             st.write("Name:", user_records["name"])
             st.write("Email:", user_records["email"])
             st.write("Bio:", user_records["bio"])
-            url_image = user_records["image"]
-            st.image(url_image)
         else:
             st.error("User ID not found!")
 
