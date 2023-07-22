@@ -23,6 +23,8 @@ def main():
         if response.status_code == 200:
             user_records= dict(response.json())
             st.success("User ID found!")
+            url_image = user_records["avatar_url"]
+            st.image(url_image , width=150)
             st.write("User ID:", username)
             st.write("Name:", user_records["name"])
             st.write("Email:", user_records["email"])
