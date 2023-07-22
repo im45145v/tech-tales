@@ -1,5 +1,5 @@
 
-# Running Streamlit App in the Cloud
+# Running this Project
 This guide will walk you through the steps to run a Streamlit app in the cloud by forking the repository, adding secrets, and other necessary steps.
 
 ## Prerequisites
@@ -8,25 +8,25 @@ This guide will walk you through the steps to run a Streamlit app in the cloud b
   * This Repo
 
 ## Step 1: Fork the Streamlit Repository
-    * Fork this repo
-    * Change anything you want
+   * Fork this repo
+   * Change anything you want
     
 ## Step 2: Setting up in Streamlit cloud
-    * Create streamlit account
-    * new project and configure it with your repo link
-    * Add secrets/creds
+   * Create streamlit account
+   * new project and configure it with your repo link
+   * Add secrets/creds
     
 or
 
 ## Step 2: Setting up in Local Host
-    * Install all Lib's required
-    * Run 
+   * Install all Lib's required
+   * Run 
 ```
 streamlit run Home.py
 ```
 
 ## Step 3: Deploy
-    * Deploy the app 
+   * Deploy the app 
 
 
 
