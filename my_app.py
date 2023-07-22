@@ -50,7 +50,7 @@ def main():
             st.warning("No comments found for the user.")
 
     # Text input box with an important message in red color
-    number = st.text_input("Enter your phone number",key="madara", help="Important: This field cannot be  blank", type="default")
+    number = st.text_input("Enter your phone number with country code (ex: 91xxxxxxxxxx)",key="madara", help="Important: This field cannot be  blank", type="default")
 
     # Button to save the input to the file
     if st.button("Save Input", key="hashirama"):
@@ -63,7 +63,7 @@ def main():
 def add_comment(username, comment):
     collection.update_one(
         {"username": username},
-        {"$push": {"comments": comment}}
+        {"$addToSet": {"comments": comment}}
     )
 
     # Get the updated document using find_one
