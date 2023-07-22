@@ -18,20 +18,23 @@ def main():
     search_id = st.text_input("Enter User ID to search",key="bingo_book")
     username = search_id
 
-    if st.button("Search"):
+        if st.button("Search"):
         response = requests.get(f"https://api.github.com/users/{username}")
         if response.status_code == 200:
-            user_records= dict(response.json())
-            st.success("User ID found!")
+            user_records = dict(response.json())
             url_image = user_records["avatar_url"]
-            st.image(url_image , width=150)
+            circular_image_style = """<style>
+                    .circle-img {object-fit: cover;border-radius: 50%;}
+                    .circle-img img {object-fit: cover;border-radius: 50%;width: 150px;height: 150px;}
+                    </style> """
+            st.markdown(circular_image_style, unsafe_allow_html=True)
+            st.markdown(f'<div class="circle-img"><img src="{url_image}"></div>', unsafe_allow_html=True)
             st.write("User ID:", username)
             st.write("Name:", user_records["name"])
             st.write("Email:", user_records["email"])
             st.write("Bio:", user_records["bio"])
         else:
             st.error("User ID not found!")
-
     # Comment box for the user
     comment = st.text_input("Enter Comment" , key="itachi")
 
