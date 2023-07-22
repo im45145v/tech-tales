@@ -18,7 +18,7 @@ def main():
     search_id = st.text_input("Enter User ID to search",key="bingo_book")
     username = search_id
 
-        if st.button("Search"):
+    if st.button("Search"):
         response = requests.get(f"https://api.github.com/users/{username}")
         if response.status_code == 200:
             user_records = dict(response.json())
@@ -35,6 +35,7 @@ def main():
             st.write("Bio:", user_records["bio"])
         else:
             st.error("User ID not found!")
+
     # Comment box for the user
     comment = st.text_input("Enter Comment" , key="itachi")
 
