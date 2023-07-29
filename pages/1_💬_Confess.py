@@ -100,12 +100,14 @@ def send_sms(to_number, body):
 
 def retrieve_comments(username):
     user_data = client.find_one(db, collection, {"username": username})
+    st.write(user_data)
     comments = user_data.get("comments", [])
     for each_comment in comments:
         st.write(each_comment)
 
 def check_user_exists(username):
     user_data = client.find_one(db, collection, {"username": username})
+    st.write(user_data)
     if user_data:
         return True
     else:
