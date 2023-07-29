@@ -2,14 +2,6 @@
 
 Connect to [MongoDB](https://mongodb.com/) and MongoDB Atlas from your [Streamlit](https://streamlit.io/) app.
 
-
-
-## Installation
-
-`pip install git+https://github.com/im45145v/tech-tales`
-
-
-
 ## Quick demonstration
 
 ```python
