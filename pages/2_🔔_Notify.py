@@ -1,15 +1,16 @@
 import streamlit as st
 import requests
-import pymongo
+from mongodb_connection import MongoConnect
 from twilio.rest import Client as cl
 
 account_sid = st.secrets["account_sid"]
 auth_token = st.secrets["auth_token"]
 twilio_phone_number = st.secrets["twilio_phone_number"]
 client1 = cl(account_sid, auth_token)
-client = pymongo.MongoClient(st.secrets["mclient"])
-db = client["Tech_Tales"]
-collection = db["comments"]
+client= st.experimental_connection('mongo', type=MongoConnect, host=st.secrets['mclient'])
+
+db ="Tech_Tales"
+collection ="comments"
 
 def main():
     st.title("User Records")
@@ -47,7 +48,7 @@ def main():
             st.success("You'll be reminded to this phone number once a new comment is added")
 
 def add_number(username, number):
-    collection.update_one(
+    client.update_one(db, collection, 
         {"username": username},
         {"$push": {"number": number}}
     )

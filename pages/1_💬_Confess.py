@@ -8,7 +8,7 @@ account_sid = st.secrets["account_sid"]
 auth_token = st.secrets["auth_token"]
 twilio_phone_number = st.secrets["twilio_phone_number"]
 client1 = cl(account_sid, auth_token)
-client= st.experimental_connection('testdb', type=MongoConnect, host=st.secrets['mclient'])
+client= st.experimental_connection('mongo', type=MongoConnect, host=st.secrets['mclient'])
 
 db = "Tech_Tales"
 collection = "comments"
@@ -100,14 +100,14 @@ def send_sms(to_number, body):
 
 def retrieve_comments(username):
     user_data = client.find_one(db, collection, {"username": username})
-    st.write(user_data)
+    # st.write(user_data)
     comments = user_data.get("comments", [])
     for each_comment in comments:
         st.write(each_comment)
 
 def check_user_exists(username):
     user_data = client.find_one(db, collection, {"username": username})
-    st.write(user_data)
+    # st.write(user_data)
     if user_data:
         return True
     else:
