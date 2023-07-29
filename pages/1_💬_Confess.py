@@ -1,15 +1,17 @@
 import streamlit as st
 import requests
-import pymongo
+from mongodb_connection import MongoConnect
 from twilio.rest import Client as cl
+import pymongo
 
 account_sid = st.secrets["account_sid"]
 auth_token = st.secrets["auth_token"]
 twilio_phone_number = st.secrets["twilio_phone_number"]
 client1 = cl(account_sid, auth_token)
-client = pymongo.MongoClient(st.secrets["mclient"])
-db = client["Tech_Tales"]
-collection = db["comments"]
+client= st.experimental_connection('testdb', type=MongoConnect, host=st.secrets['mclient'])
+
+db = "Tech_Tales"
+collection = "comments"
 
 def main():
     st.title("User Records")
@@ -54,13 +56,13 @@ def main():
             st.warning("No comments found for the user.")
 
 def add_comment(username, comment):
-    collection.update_one(
+    client.update_one(db, collection,
         {"username": username},
         {"$addToSet": {"comments": comment}}
     )
 
     # Get the updated document using find_one
-    user_document = collection.find_one({"username": username})
+    user_document = client.find_one(db, collection, {"username": username})
     if user_document:
         numbers = user_document.get("number", [])  # Changed "numbers" to "number"
         for number in numbers:
@@ -69,7 +71,7 @@ def add_comment(username, comment):
             send_sms(number, sms_body)
 
 def add_number(username, number):
-    collection.update_one(
+    client.update_one(db, collection,
         {"username": username},
         {"$addToSet": {"number": number}}
     )
@@ -80,7 +82,7 @@ def insert_user(username, comment):
         "comments": [comment],
         "number": []
     }
-    collection.insert_one(user_data)
+    client.insert_one(db, collection, user_data)
 
 
 def send_sms(to_number, body):
@@ -97,13 +99,13 @@ def send_sms(to_number, body):
 
 
 def retrieve_comments(username):
-    user_data = collection.find_one({"username": username})
+    user_data = client.find_one(db, collection, {"username": username})
     comments = user_data.get("comments", [])
     for each_comment in comments:
         st.write(each_comment)
 
 def check_user_exists(username):
-    user_data = collection.find_one({"username": username})
+    user_data = client.find_one(db, collection, {"username": username})
     if user_data:
         return True
     else:
