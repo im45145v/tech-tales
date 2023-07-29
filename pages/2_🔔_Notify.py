@@ -7,6 +7,8 @@ account_sid = st.secrets["account_sid"]
 auth_token = st.secrets["auth_token"]
 twilio_phone_number = st.secrets["twilio_phone_number"]
 client1 = cl(account_sid, auth_token)
+
+# The MongoDB connection
 client= st.experimental_connection('mongo', type=MongoConnect, host=st.secrets['mclient'])
 
 db ="Tech_Tales"
