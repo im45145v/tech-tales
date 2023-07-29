@@ -23,7 +23,7 @@ for each_comment in comments:
 
 ### collection()
 
-```
+```python
 client.collection(self, db:str = None, coll:str = None, ttl: int = 3600)
 
 ```
@@ -31,7 +31,7 @@ Returns and caches a MongoDB collection object with the parameters specified
 
 #### update_one()
 
-```
+```python
 client.update_one(dbname: str, collname: str,*args, **kwargs) -> None
 
 Example:
@@ -47,7 +47,7 @@ Executes a MongoDB command to update a single document
 
 #### find_one()
 
-```
+```python
 client.find_one(dbname: str, collname: str,*args, **kwargs)
 
 Example:
@@ -59,7 +59,7 @@ Executes a MongoDB query to find a single document
 
 #### insert_one()
 
-```
+```python
 insert_one(self, dbname: str, collname: str,*args, **kwargs)
 
 Example: 
