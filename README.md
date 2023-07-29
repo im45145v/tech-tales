@@ -29,33 +29,48 @@ for each_comment in comments:
 
 ## Main methods
 
+### collection()
 
+```
+client.collection(self, db:str = None, coll:str = None, ttl: int = 3600)
+
+```
+Returns and caches a MongoDB collection object with the parameters specified
 
 #### update_one()
 
 ```
+client.update_one(dbname: str, collname: str,*args, **kwargs) -> None
+
+Example:
 client.update_one(db, collection,
         {"username": username},
         {"$addToSet": {"comments": comment}}
     )
 ```
 
-This MongoDB command will update one thing in database
+Executes a MongoDB command to update a single document
 
 
 
 #### find_one()
 
 ```
+client.find_one(dbname: str, collname: str,*args, **kwargs)
+
+Example:
 user_document = client.find_one(db, collection, {"username": username})
+
 ```
 
-This will find one thing from database
-
+Executes a MongoDB query to find a single document
 
 #### insert_one()
 
 ```
+insert_one(self, dbname: str, collname: str,*args, **kwargs)
+
+Example: 
 user_data = {
         "username": username,
         "comments": [comment],
@@ -96,12 +111,12 @@ user_data = client.find_one(db, collection, {"username": 'im45145v'})
 if user_data:st.write("Exists")
 else:st.write("Not Exists")
 ```
-This will show if a user exists or not in the database
+This program check if a particular username exists within the database
 
 
 
 ##### 1_💬_Confess.py.py (inside pages)
-with this file u can add comment to a specific user in the database
+This file allows you to add a comment for a particular user
 
 
 
